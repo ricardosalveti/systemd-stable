@@ -1,7 +1,10 @@
 /* SPDX-License-Identifier: LGPL-2.1-or-later */
 
 #include <linux/icmpv6.h>
-#include <linux/ipv6_route.h>
+/* linux/ipv6_route.h conflicts with netinet/in.h so define manually */
+#ifndef IP6_RT_PRIO_USER
+#define IP6_RT_PRIO_USER       1024
+#endif
 
 #include "alloc-util.h"
 #include "netlink-util.h"

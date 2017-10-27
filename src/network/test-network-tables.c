@@ -1,5 +1,6 @@
 /* SPDX-License-Identifier: LGPL-2.1-or-later */
 
+#include <netinet/if_ether.h>
 #include "bond.h"
 #include "dhcp6-internal.h"
 #include "dhcp6-protocol.h"
