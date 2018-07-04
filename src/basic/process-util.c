@@ -1541,7 +1541,7 @@ int set_oom_score_adjust(int value) {
         sprintf(t, "%i", value);
 
         return write_string_file("/proc/self/oom_score_adj", t,
-                                 WRITE_STRING_FILE_VERIFY_ON_FAILURE|WRITE_STRING_FILE_DISABLE_BUFFER);
+                                 WRITE_STRING_FILE_VERIFY_ON_FAILURE);
 }
 
 int pidfd_get_pid(int fd, pid_t *ret) {
