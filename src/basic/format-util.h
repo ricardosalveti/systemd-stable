@@ -32,13 +32,7 @@ assert_cc(sizeof(gid_t) == sizeof(uint32_t));
 #  define PRI_TIMEX "li"
 #endif
 
-#if SIZEOF_RLIM_T == 8
-#  define RLIM_FMT "%" PRIu64
-#elif SIZEOF_RLIM_T == 4
-#  define RLIM_FMT "%" PRIu32
-#else
-#  error Unknown rlim_t size
-#endif
+#define RLIM_FMT "%ju"
 
 #if SIZEOF_DEV_T == 8
 #  define DEV_FMT "%" PRIu64
