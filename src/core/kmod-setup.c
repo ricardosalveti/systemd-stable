@@ -10,6 +10,7 @@
 #include "kmod-setup.h"
 #include "macro.h"
 #include "string-util.h"
+#include "missing_type.h"
 
 #if HAVE_KMOD
 #include "module-util.h"
