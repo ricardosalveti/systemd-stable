@@ -41,6 +41,7 @@
 #include "utf8.h"
 #include "util.h"
 #include "web-util.h"
+#include "missing_stdlib.h"
 
 /* up to three lines (each up to 100 characters) or 300 characters, whichever is less */
 #define PRINT_LINE_THRESHOLD 3

@@ -4,6 +4,7 @@
 #include "rlimit-util.h"
 #include "stdio-util.h"
 #include "string-util.h"
+#include "missing_stdlib.h"
 
 int bus_property_get_bool(
                 sd_bus *bus,

@@ -535,6 +535,7 @@ foreach ident : [
                                  #include <sys/wait.h>'''],
         ['mallinfo',          '''#include <malloc.h>'''],
         ['close_range',       '''#include <unistd.h>'''],
+        ['strndupa' ,         '''#include <string.h>'''],
 ]
 
         have = cc.has_function(ident[0], prefix : ident[1], args : '-D_GNU_SOURCE')

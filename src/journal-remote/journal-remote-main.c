@@ -22,6 +22,7 @@
 #include "stat-util.h"
 #include "string-table.h"
 #include "strv.h"
+#include "missing_stdlib.h"
 
 #define PRIV_KEY_FILE CERTIFICATE_ROOT "/private/journal-remote.pem"
 #define CERT_FILE     CERTIFICATE_ROOT "/certs/journal-remote.pem"

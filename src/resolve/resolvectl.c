@@ -37,6 +37,7 @@
 #include "terminal-util.h"
 #include "utf8.h"
 #include "verbs.h"
+#include "missing_stdlib.h"
 
 static int arg_family = AF_UNSPEC;
 static int arg_ifindex = 0;

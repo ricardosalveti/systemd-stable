@@ -19,6 +19,7 @@
 #include "nss-util.h"
 #include "signal-util.h"
 #include "string-util.h"
+#include "missing_stdlib.h"
 
 NSS_GETHOSTBYNAME_PROTOTYPES(mymachines);
 NSS_GETPW_PROTOTYPES(mymachines);

@@ -18,6 +18,7 @@
 #include "util.h"
 #include "verbs.h"
 #include "virt.h"
+#include "missing_stdlib.h"
 
 static char **arg_path = NULL;
 

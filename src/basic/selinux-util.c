@@ -27,6 +27,7 @@
 #include "selinux-util.h"
 #include "stdio-util.h"
 #include "time-util.h"
+#include "missing_stdlib.h"
 
 #if HAVE_SELINUX
 DEFINE_TRIVIAL_CLEANUP_FUNC(context_t, context_free);

@@ -13,6 +13,7 @@
 #include "string-table.h"
 #include "string-util.h"
 #include "strv.h"
+#include "missing_stdlib.h"
 
 /*
   # .network

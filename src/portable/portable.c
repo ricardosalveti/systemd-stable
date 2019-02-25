@@ -31,6 +31,7 @@
 #include "strv.h"
 #include "tmpfile-util.h"
 #include "user-util.h"
+#include "missing_stdlib.h"
 
 static const char profile_dirs[] = CONF_PATHS_NULSTR("systemd/portable/profile");
 

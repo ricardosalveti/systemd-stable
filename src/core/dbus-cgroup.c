@@ -16,6 +16,7 @@
 #include "fileio.h"
 #include "limits-util.h"
 #include "path-util.h"
+#include "missing_stdlib.h"
 
 BUS_DEFINE_PROPERTY_GET(bus_property_get_tasks_max, "t", TasksMax, tasks_max_resolve);
 

@@ -15,6 +15,7 @@
 #include "string-util.h"
 #include "strv.h"
 #include "utf8.h"
+#include "missing_stdlib.h"
 
 /* We follow bash for the character set. Different shells have different rules. */
 #define VALID_BASH_ENV_NAME_CHARS               \

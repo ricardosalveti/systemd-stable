@@ -22,6 +22,7 @@
 #include "stat-util.h"
 #include "string-util.h"
 #include "strv.h"
+#include "missing_stdlib.h"
 
 int parse_boolean(const char *v) {
         if (!v)

@@ -10,6 +10,7 @@
 #include "sort-util.h"
 #include "string-util.h"
 #include "terminal-util.h"
+#include "missing_stdlib.h"
 
 struct CGroupInfo {
         char *cgroup_path;

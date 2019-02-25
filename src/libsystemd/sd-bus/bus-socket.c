@@ -28,6 +28,7 @@
 #include "string-util.h"
 #include "user-util.h"
 #include "utf8.h"
+#include "missing_stdlib.h"
 
 #define SNDBUF_SIZE (8*1024*1024)
 

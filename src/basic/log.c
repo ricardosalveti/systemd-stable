@@ -36,6 +36,7 @@
 #include "terminal-util.h"
 #include "time-util.h"
 #include "utf8.h"
+#include "missing_stdlib.h"
 
 #define SNDBUF_SIZE (8*1024*1024)
 

@@ -30,6 +30,7 @@
 #include "udev-rules.h"
 #include "user-util.h"
 #include "virt.h"
+#include "missing_stdlib.h"
 
 #define RULES_DIRS (const char* const*) CONF_PATHS_STRV("udev/rules.d")
 

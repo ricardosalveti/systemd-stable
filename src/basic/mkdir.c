@@ -14,6 +14,7 @@
 #include "stat-util.h"
 #include "stdio-util.h"
 #include "user-util.h"
+#include "missing_stdlib.h"
 
 int mkdir_safe_internal(
                 const char *path,

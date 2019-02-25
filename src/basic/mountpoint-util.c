@@ -10,6 +10,7 @@
 #include "fs-util.h"
 #include "missing_stat.h"
 #include "missing_syscall.h"
+#include "missing_stdlib.h"
 #include "mountpoint-util.h"
 #include "parse-util.h"
 #include "path-util.h"

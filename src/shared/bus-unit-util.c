@@ -44,6 +44,7 @@
 #include "unit-def.h"
 #include "user-util.h"
 #include "utf8.h"
+#include "missing_stdlib.h"
 
 int bus_parse_unit_info(sd_bus_message *message, UnitInfo *u) {
         assert(message);

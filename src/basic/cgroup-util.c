@@ -38,6 +38,7 @@
 #include "unit-name.h"
 #include "user-util.h"
 #include "xattr-util.h"
+#include "missing_stdlib.h"
 
 static int cg_enumerate_items(const char *controller, const char *path, FILE **_f, const char *item) {
         _cleanup_free_ char *fs = NULL;

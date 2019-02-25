@@ -34,6 +34,7 @@
 #include "udev-util.h"
 #include "udev-watch.h"
 #include "user-util.h"
+#include "missing_stdlib.h"
 
 typedef struct Spawn {
         sd_device *device;

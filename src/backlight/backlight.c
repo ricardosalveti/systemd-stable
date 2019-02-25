@@ -19,6 +19,7 @@
 #include "string-util.h"
 #include "strv.h"
 #include "util.h"
+#include "missing_stdlib.h"
 
 static int help(void) {
         _cleanup_free_ char *link = NULL;

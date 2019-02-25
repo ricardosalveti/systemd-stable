@@ -41,6 +41,7 @@
 #include "process-util.h"
 #include "string-util.h"
 #include "strv.h"
+#include "missing_stdlib.h"
 
 #define log_debug_bus_message(m)                                         \
         do {                                                             \

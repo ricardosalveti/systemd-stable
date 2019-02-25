@@ -26,6 +26,7 @@
 #include "socket-util.h"
 #include "string-util.h"
 #include "util.h"
+#include "missing_stdlib.h"
 
 #define BUFFER_SIZE (256 * 1024)
 

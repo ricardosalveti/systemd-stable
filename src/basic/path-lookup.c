@@ -15,6 +15,7 @@
 #include "strv.h"
 #include "tmpfile-util.h"
 #include "user-util.h"
+#include "missing_stdlib.h"
 
 int xdg_user_runtime_dir(char **ret, const char *suffix) {
         const char *e;

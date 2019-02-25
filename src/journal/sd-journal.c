@@ -40,6 +40,7 @@
 #include "string-util.h"
 #include "strv.h"
 #include "syslog-util.h"
+#include "missing_stdlib.h"
 
 #define JOURNAL_FILES_MAX 7168
 

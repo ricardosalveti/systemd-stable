@@ -73,6 +73,7 @@
 #include "unit-name.h"
 #include "user-util.h"
 #include "varlink.h"
+#include "missing_stdlib.h"
 
 #define DEFAULT_FSS_INTERVAL_USEC (15*USEC_PER_MINUTE)
 #define PROCESS_INOTIFY_INTERVAL 1024   /* Every 1,024 messages processed */

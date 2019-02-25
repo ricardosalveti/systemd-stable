@@ -31,6 +31,7 @@
 #include "locale-util.h"
 #include "login-util.h"
 #include "macro.h"
+#include "missing_stdlib.h"
 #include "pam-util.h"
 #include "parse-util.h"
 #include "path-util.h"

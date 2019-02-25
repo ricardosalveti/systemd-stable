@@ -41,6 +41,7 @@
 #include "unit-printf.h"
 #include "user-util.h"
 #include "utf8.h"
+#include "missing_stdlib.h"
 
 BUS_DEFINE_PROPERTY_GET_ENUM(bus_property_get_exec_output, exec_output, ExecOutput);
 static BUS_DEFINE_PROPERTY_GET_ENUM(property_get_exec_input, exec_input, ExecInput);

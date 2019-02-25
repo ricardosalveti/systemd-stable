@@ -14,6 +14,7 @@
 #include "parse-util.h"
 #include "string-util.h"
 #include "unaligned.h"
+#include "missing_stdlib.h"
 
 enum {
         IMPORTER_STATE_LINE = 0,    /* waiting to read, or reading line */
