@@ -267,7 +267,7 @@ int cg_attach(const char *controller, const char *path, pid_t pid) {
 
         xsprintf(c, PID_FMT "\n", pid);
 
-        r = write_string_file(fs, c, WRITE_STRING_FILE_DISABLE_BUFFER);
+        r = write_string_file(fs, c, 0);
         if (r < 0)
                 return r;
 
@@ -799,7 +799,7 @@ int cg_enable_everywhere(
                                         return log_debug_errno(errno, "Failed to open cgroup.subtree_control file of %s: %m", p);
                         }
 
-                        r = write_string_stream(f, s, WRITE_STRING_FILE_DISABLE_BUFFER);
+                        r = write_string_stream(f, s, 0);
                         if (r < 0) {
                                 log_debug_errno(r, "Failed to %s controller %s for %s (%s): %m",
                                                 FLAGS_SET(mask, bit) ? "enable" : "disable", n, p, fs);

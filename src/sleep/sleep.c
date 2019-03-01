@@ -48,7 +48,7 @@ static int write_hibernate_location_info(const HibernateLocation *hibernate_loca
         assert(hibernate_location->swap);
 
         xsprintf(resume_str, "%u:%u", major(hibernate_location->devno), minor(hibernate_location->devno));
-        r = write_string_file("/sys/power/resume", resume_str, WRITE_STRING_FILE_DISABLE_BUFFER);
+        r = write_string_file("/sys/power/resume", resume_str, 0);
         if (r < 0)
                 return log_debug_errno(r, "Failed to write partition device to /sys/power/resume for '%s': '%s': %m",
                                        hibernate_location->swap->device, resume_str);
@@ -75,7 +75,7 @@ static int write_hibernate_location_info(const HibernateLocation *hibernate_loca
         }
 
         xsprintf(offset_str, "%" PRIu64, hibernate_location->offset);
-        r = write_string_file("/sys/power/resume_offset", offset_str, WRITE_STRING_FILE_DISABLE_BUFFER);
+        r = write_string_file("/sys/power/resume_offset", offset_str, 0);
         if (r < 0)
                 return log_debug_errno(r, "Failed to write swap file offset to /sys/power/resume_offset for '%s': '%s': %m",
                                        hibernate_location->swap->device, offset_str);
@@ -92,7 +92,7 @@ static int write_mode(char **modes) {
         STRV_FOREACH(mode, modes) {
                 int k;
 
-                k = write_string_file("/sys/power/disk", *mode, WRITE_STRING_FILE_DISABLE_BUFFER);
+                k = write_string_file("/sys/power/disk", *mode, 0);
                 if (k >= 0)
                         return 0;
 
@@ -114,7 +114,7 @@ static int write_state(FILE **f, char **states) {
         STRV_FOREACH(state, states) {
                 int k;
 
-                k = write_string_stream(*f, *state, WRITE_STRING_FILE_DISABLE_BUFFER);
+                k = write_string_stream(*f, *state, 0);
                 if (k >= 0)
                         return 0;
                 log_debug_errno(k, "Failed to write '%s' to /sys/power/state: %m", *state);
