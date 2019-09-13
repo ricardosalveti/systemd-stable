@@ -1,6 +1,5 @@
 /* SPDX-License-Identifier: LGPL-2.1-or-later */
 
-#include <sched.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/types.h>
@@ -10,6 +9,7 @@
 #include <float.h>
 
 #include "time-util.h"
+#include "cpu-set-util.h"
 
 /* Print information about various types. Useful when diagnosing
  * gcc diagnostics on an unfamiliar architecture. */
