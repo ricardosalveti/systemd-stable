@@ -331,8 +331,10 @@ int nss_group_to_group_record(
         if (isempty(grp->gr_name))
                 return -EINVAL;
 
+#if ENABLE_GSHADOW
         if (sgrp && !streq_ptr(sgrp->sg_namp, grp->gr_name))
                 return -EINVAL;
+#endif
 
         g = group_record_new();
         if (!g)
@@ -348,6 +350,7 @@ int nss_group_to_group_record(
 
         g->gid = grp->gr_gid;
 
+#if ENABLE_GSHADOW
         if (sgrp) {
                 if (looks_like_hashed_password(utf8_only(sgrp->sg_passwd))) {
                         g->hashed_password = strv_new(sgrp->sg_passwd);
@@ -363,6 +366,7 @@ int nss_group_to_group_record(
                 if (r < 0)
                         return r;
         }
+#endif
 
         r = json_build(&g->json, JSON_BUILD_OBJECT(
                                        JSON_BUILD_PAIR("groupName", JSON_BUILD_STRING(g->group_name)),
@@ -388,6 +392,7 @@ int nss_sgrp_for_group(const struct group *grp, struct sgrp *ret_sgrp, char **re
         assert(ret_sgrp);
         assert(ret_buffer);
 
+#if ENABLE_GSHADOW
         for (;;) {
                 _cleanup_free_ char *buf = NULL;
                 struct sgrp sgrp, *result;
@@ -416,6 +421,9 @@ int nss_sgrp_for_group(const struct group *grp, struct sgrp *ret_sgrp, char **re
                 buflen *= 2;
                 buf = mfree(buf);
         }
+#else
+        return -ESRCH;
+#endif
 }
 
 int nss_group_record_by_name(
@@ -427,7 +435,9 @@ int nss_group_record_by_name(
         struct group grp, *result;
         bool incomplete = false;
         size_t buflen = 4096;
+#if ENABLE_GSHADOW
         struct sgrp sgrp, *sresult = NULL;
+#endif
         int r;
 
         assert(name);
@@ -457,6 +467,7 @@ int nss_group_record_by_name(
                 buf = mfree(buf);
         }
 
+#if ENABLE_GSHADOW
         if (with_shadow) {
                 r = nss_sgrp_for_group(result, &sgrp, &sbuf);
                 if (r < 0) {
@@ -468,6 +479,9 @@ int nss_group_record_by_name(
                 incomplete = true;
 
         r = nss_group_to_group_record(result, sresult, ret);
+#else
+        r = nss_group_to_group_record(result, NULL, ret);
+#endif
         if (r < 0)
                 return r;
 
@@ -484,7 +498,9 @@ int nss_group_record_by_gid(
         struct group grp, *result;
         bool incomplete = false;
         size_t buflen = 4096;
+#if ENABLE_GSHADOW
         struct sgrp sgrp, *sresult = NULL;
+#endif
         int r;
 
         assert(ret);
@@ -512,6 +528,7 @@ int nss_group_record_by_gid(
                 buf = mfree(buf);
         }
 
+#if ENABLE_GSHADOW
         if (with_shadow) {
                 r = nss_sgrp_for_group(result, &sgrp, &sbuf);
                 if (r < 0) {
@@ -523,6 +540,9 @@ int nss_group_record_by_gid(
                 incomplete = true;
 
         r = nss_group_to_group_record(result, sresult, ret);
+#else
+        r = nss_group_to_group_record(result, NULL, ret);
+#endif
         if (r < 0)
                 return r;
 

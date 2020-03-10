@@ -2,7 +2,11 @@
 #pragma once
 
 #include <grp.h>
+#if ENABLE_GSHADOW
 #include <gshadow.h>
+#else
+struct sgrp;
+#endif
 #include <pwd.h>
 #include <shadow.h>
 
