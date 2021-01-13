@@ -4,7 +4,9 @@
 #include <linux/loop.h>
 #include <sched.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <sys/mount.h>
+#include <sys/utsname.h>
 #include <unistd.h>
 #include <linux/fs.h>
 
@@ -860,12 +862,31 @@ static int mount_sysfs(const MountEntry *m) {
 
 static int mount_procfs(const MountEntry *m, const NamespaceInfo *ns_info) {
         const char *entry_path;
-        int r;
+        int r, major, minor;
+        struct utsname uts;
+        bool old = false;
 
         assert(m);
         assert(ns_info);
 
         entry_path = mount_entry_path(m);
+
+        /* If uname says that the system is older than v5.8, then the textual hidepid= stuff is not
+         * supported by the kernel, and thus the per-instance hidepid= neither, which means we
+         * really don't want to use it, since it would affect our host's /proc * mount. Hence let's
+         * gracefully fallback to a classic, unrestricted version. */
+
+        r = uname(&uts);
+        if (r < 0)
+               return errno;
+
+        major = atoi(uts.release);
+        minor = atoi(strchr(uts.release, '.') + 1);
+
+        if (major < 5 || (major == 5 && minor < 8)) {
+                log_debug("Pre v5.8 kernel detected [v%d.%d] - skipping hidepid=", major, minor);
+                old = true;
+        }
 
         /* Mount a new instance, so that we get the one that matches our user namespace, if we are running in
          * one. i.e we don't reuse existing mounts here under any condition, we want a new instance owned by
@@ -875,8 +896,8 @@ static int mount_procfs(const MountEntry *m, const NamespaceInfo *ns_info) {
         (void) mkdir_p_label(entry_path, 0755);
         (void) umount_recursive(entry_path, 0);
 
-        if (ns_info->protect_proc != PROTECT_PROC_DEFAULT ||
-            ns_info->proc_subset != PROC_SUBSET_ALL) {
+        if (!old && (ns_info->protect_proc != PROTECT_PROC_DEFAULT ||
+            ns_info->proc_subset != PROC_SUBSET_ALL)) {
                 _cleanup_free_ char *opts = NULL;
 
                 /* Starting with kernel 5.8 procfs' hidepid= logic is truly per-instance (previously it
